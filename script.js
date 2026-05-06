@@ -17,6 +17,23 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 50);
 });
 
+// animation
+const elements = document.querySelectorAll('.fade-up');
+
+window.addEventListener('scroll', () => {
+elements.forEach(el => {
+if(el.getBoundingClientRect().top < window.innerHeight - 100){
+el.classList.add('show');
+}
+});
+});
+
+// loader
+window.onload = () => {
+document.getElementById("loader").style.display = "none";
+};
+
+
 // LOADER
 window.onload = () => {
   const loader = document.getElementById("loader");
