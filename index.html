@@ -1,267 +1,1515 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D19 Media – Dark Luxury</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --deep: #0a0612;
-    --purple: #6b21a8;
-    --violet: #9333ea;
-    --light-purple: #c084fc;
-    --gold: #d4a853;
-    --text: #e8e0f0;
-    --muted: #9ca3af;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--deep); color: var(--text); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-  
-  /* NAV */
-  nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,6,18,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(147,51,234,0.2); }
-  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; letter-spacing: 0.3em; color: var(--light-purple); }
-  .logo span { color: var(--gold); }
-  nav ul { list-style: none; display: flex; gap: 2.5rem; }
-  nav ul a { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
-  nav ul a:hover { color: var(--light-purple); }
-  .nav-cta { background: var(--violet); color: #fff; padding: 0.6rem 1.6rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.3s; }
-  .nav-cta:hover { background: var(--gold); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D19 Media – Where Stories Move</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep: #0a0612;
+            --dark-bg: #0f0819;
+            --purple: #6b21a8;
+            --violet: #9333ea;
+            --light-purple: #c084fc;
+            --gold: #d4a853;
+            --text: #e8e0f0;
+            --muted: #9ca3af;
+            --accent: #f472b6;
+            --success: #10b981;
+        }
 
-  /* HERO */
-  .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 70% 40%, rgba(107,33,168,0.4) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 70%, rgba(147,51,234,0.2) 0%, transparent 60%); }
-  .hero-content { text-align: center; position: relative; z-index: 2; }
-  .hero-tag { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
-  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 6rem; font-weight: 300; line-height: 1; letter-spacing: -0.02em; color: #fff; margin-bottom: 1rem; }
-  .hero-title em { font-style: italic; color: var(--light-purple); }
-  .hero-sub { font-size: 0.85rem; letter-spacing: 0.1em; color: var(--muted); max-width: 400px; margin: 0 auto 3rem; line-height: 2; }
-  .hero-btns { display: flex; gap: 1.5rem; justify-content: center; }
-  .btn-primary { background: var(--violet); color: #fff; padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.3s; }
-  .btn-outline { background: transparent; color: var(--light-purple); padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--violet); cursor: pointer; transition: all 0.3s; }
-  .btn-outline:hover { background: var(--violet); color: #fff; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  /* SECTION TEMPLATE */
-  section { padding: 6rem 4rem; }
-  .section-tag { font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; line-height: 1.1; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-  /* SERVICES */
-  .services { background: rgba(107,33,168,0.08); border-top: 1px solid rgba(147,51,234,0.2); }
-  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; }
-  .service-card { background: rgba(255,255,255,0.03); padding: 3rem 2rem; border: 1px solid rgba(147,51,234,0.15); position: relative; overflow: hidden; transition: all 0.4s; }
-  .service-card:hover { background: rgba(147,51,234,0.1); border-color: var(--violet); }
-  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(147,51,234,0.3); position: absolute; top: 1rem; right: 2rem; }
-  .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1rem; color: var(--light-purple); }
-  .service-card p { font-size: 0.8rem; line-height: 2; color: var(--muted); }
+        body {
+            background: var(--deep);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-  /* MAGAZINES */
-  .magazines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; }
-  .mag-card { aspect-ratio: 3/4; background: linear-gradient(135deg, rgba(107,33,168,0.4), rgba(10,6,18,0.9)); border: 1px solid rgba(147,51,234,0.2); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: all 0.4s; }
-  .mag-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-  .mag-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-  .mag-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; }
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 6, 18, 0.92);
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+            padding: 1rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
 
-  /* BLOG */
-  .blog { background: rgba(147,51,234,0.05); }
-  .blog-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; margin-top: 4rem; }
-  .blog-main { border: 1px solid rgba(147,51,234,0.2); padding: 2.5rem; }
-  .blog-card { border: 1px solid rgba(147,51,234,0.15); padding: 1.5rem; transition: all 0.3s; cursor: pointer; }
-  .blog-card:hover { border-color: var(--violet); }
-  .blog-tag { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--violet); margin-bottom: 0.75rem; }
-  .blog-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; line-height: 1.3; margin-bottom: 0.75rem; }
-  .blog-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.8; }
-  .blog-meta { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 1.5rem; }
+        header.scrolled {
+            background: rgba(10, 6, 18, 0.98);
+            padding: 0.8rem 4rem;
+            box-shadow: 0 8px 32px rgba(147, 51, 234, 0.1);
+        }
 
-  /* FOOTER */
-  footer { background: rgba(0,0,0,0.5); border-top: 1px solid rgba(147,51,234,0.2); padding: 4rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--light-purple); margin-bottom: 1rem; }
-  .footer-brand span { color: var(--gold); }
-  .footer-desc { font-size: 0.78rem; color: var(--muted); line-height: 2; }
-  .footer-heading { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
-  .footer-links { list-style: none; }
-  .footer-links li { margin-bottom: 0.75rem; }
-  .footer-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.3s; }
-  .footer-links a:hover { color: var(--light-purple); }
-  .footer-bottom { padding: 2rem 4rem; border-top: 1px solid rgba(147,51,234,0.1); display: flex; justify-content: space-between; align-items: center; }
-  .footer-bottom p { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-  /* BADGE */
-  .template-badge { position: fixed; bottom: 2rem; right: 2rem; background: var(--gold); color: var(--deep); padding: 0.5rem 1rem; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; z-index: 999; }
-</style>
+        .logo-svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: var(--light-purple);
+        }
+
+        .logo-text span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--light-purple);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .search-btn {
+            background: transparent;
+            border: none;
+            color: var(--light-purple);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            color: var(--gold);
+        }
+
+        .subscribe-btn {
+            background: linear-gradient(135deg, var(--violet), var(--purple));
+            color: #fff;
+            padding: 0.7rem 1.8rem;
+            border: none;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .subscribe-btn:hover {
+            background: linear-gradient(135deg, var(--light-purple), var(--violet));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--light-purple);
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+            background: var(--dark-bg);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 70% 40%, rgba(107, 33, 168, 0.4) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 70%, rgba(147, 51, 234, 0.2) 0%, transparent 60%);
+            z-index: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 168, 83, 0.1), transparent);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            z-index: 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--light-purple);
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 2;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--violet), var(--purple));
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--light-purple), var(--violet));
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--light-purple);
+            border: 2px solid var(--violet);
+        }
+
+        .btn-outline:hover {
+            background: var(--violet);
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(147, 51, 234, 0.3);
+        }
+
+        /* SECTION STYLES */
+        section {
+            padding: 7rem 4rem;
+            position: relative;
+        }
+
+        .section-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .section-desc {
+            font-size: 1rem;
+            color: var(--muted);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        /* FEATURED ARTICLES */
+        .featured-articles {
+            background: linear-gradient(135deg, rgba(107, 33, 168, 0.08), rgba(147, 51, 234, 0.05));
+            border-top: 1px solid rgba(147, 51, 234, 0.2);
+            border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .article-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(147, 51, 234, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            border-color: var(--gold);
+            background: rgba(147, 51, 234, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(147, 51, 234, 0.2);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--purple), var(--violet));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .article-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-tag {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--light-purple);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            color: #fff;
+        }
+
+        .article-excerpt {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: auto;
+        }
+
+        .article-meta {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-top: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* MAGAZINE SECTION */
+        .magazines {
+            background: var(--dark-bg);
+        }
+
+        .magazines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mag-card {
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, rgba(107, 33, 168, 0.5), rgba(10, 6, 18, 0.9));
+            border: 2px solid rgba(147, 51, 234, 0.2);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .mag-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+            z-index: 1;
+        }
+
+        .mag-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(212, 168, 83, 0.15);
+        }
+
+        .mag-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(192, 132, 252, 0.1);
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 0;
+        }
+
+        .mag-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .mag-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .mag-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .mag-read-btn {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--gold);
+            color: var(--deep);
+            border: none;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .mag-read-btn:hover {
+            background: var(--light-purple);
+            color: #fff;
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.08), transparent);
+            border-top: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(147, 51, 234, 0.15);
+            border-radius: 8px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--light-purple));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(147, 51, 234, 0.1);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: rgba(147, 51, 234, 0.2);
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 1rem;
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--light-purple);
+        }
+
+        .service-desc {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--muted);
+        }
+
+        /* BLOG SECTION */
+        .blog {
+            background: linear-gradient(180deg, rgba(147, 51, 234, 0.05), transparent);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .blog-featured {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 8px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-featured::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.1), transparent);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .blog-featured-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-featured-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--purple), var(--violet));
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .blog-featured h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .blog-featured p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .blog-side {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(147, 51, 234, 0.15);
+            border-radius: 8px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            border-color: var(--gold);
+            background: rgba(147, 51, 234, 0.1);
+            transform: translateX(5px);
+        }
+
+        .blog-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        /* STATS SECTION */
+        .stats {
+            background: linear-gradient(135deg, rgba(107, 33, 168, 0.15), rgba(147, 51, 234, 0.08));
+            border-top: 1px solid rgba(147, 51, 234, 0.2);
+            border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--light-purple);
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 1px solid rgba(147, 51, 234, 0.2);
+            padding: 5rem 4rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--light-purple);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand span {
+            color: var(--gold);
+        }
+
+        .footer-desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .footer-heading {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-purple);
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-purple);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--deep);
+            transform: translateY(-3px);
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(147, 51, 234, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom-text {
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        /* MODALS & POPUPS */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--dark-bg);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            max-width: 500px;
+            width: 90%;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--light-purple);
+            background: none;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--gold);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            clear: both;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-purple);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            color: var(--text);
+            font-family: inherit;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .modal-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--violet), var(--purple));
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .modal-btn:hover {
+            background: linear-gradient(135deg, var(--light-purple), var(--violet));
+            box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            section {
+                padding: 5rem 2rem;
+            }
+
+            header {
+                padding: 1rem 2rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .articles-grid,
+            .magazines-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-divider {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- HEADER -->
+    <header>
+        <a href="#home" class="logo">
+            <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#c084fc;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#d4a853;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <!-- D -->
+                <path d="M20 20 L50 20 Q70 20 70 50 Q70 80 50 80 L20 80 Z" fill="url(#logoGrad)" opacity="0.8"/>
+                <!-- 19 -->
+                <text x="50" y="60" font-size="24" font-weight="bold" fill="url(#logoGrad)" text-anchor="middle">19</text>
+            </svg>
+            <span class="logo-text">D<span>19</span></span>
+        </a>
 
-<div class="template-badge">Template 01 – Dark Luxury</div>
+        <nav>
+            <ul>
+                <li><a href="#home" onclick="scrollToSection('home')">HOME</a></li>
+                <li><a href="#magazine" onclick="scrollToSection('magazine')">MAGAZINE</a></li>
+                <li><a href="#blog" onclick="scrollToSection('blog')">BLOG</a></li>
+                <li><a href="#services" onclick="scrollToSection('services')">SERVICES</a></li>
+                <li><a href="#contact" onclick="scrollToSection('contact')">CONTACT</a></li>
+            </ul>
+        </nav>
 
-<!-- NAVBAR -->
-<nav>
-  <div class="logo">D<span>19</span> MEDIA</div>
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Magazine</a></li>
-    <li><a href="#">Blog</a></li>
-    <li><a href="#">Services</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-  <button class="nav-cta">Subscribe</button>
-</nav>
+        <div class="nav-right">
+            <button class="search-btn" onclick="openSearchModal()">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="subscribe-btn" onclick="openSubscribeModal()">SUBSCRIBE</button>
+            <button class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <p class="hero-tag">Delta · 19 · Media</p>
-    <h1 class="hero-title">Where <em>Stories</em><br>Come Alive</h1>
-    <p class="hero-sub">Premium digital media for the modern audience. Magazines, insights, and creative content crafted with purpose.</p>
-    <div class="hero-btns">
-      <button class="btn-primary">Explore Now</button>
-      <button class="btn-outline">Our Magazine</button>
-    </div>
-  </div>
-</section>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-tag">✦ Delta 19 — Where Stories Move</p>
+            <h1 class="hero-title">Where <em>Stories</em><br>Come Alive</h1>
+            <p class="hero-subtitle">Premium digital media for the modern audience. Magazines, insights, and creative content crafted with purpose and precision.</p>
+            <div class="hero-btns">
+                <button class="btn btn-primary" onclick="scrollToSection('magazine')">Read Magazine</button>
+                <button class="btn btn-outline" onclick="scrollToSection('blog')">Explore Blog</button>
+            </div>
+        </div>
+    </section>
 
-<!-- SERVICES -->
-<section class="services">
-  <p class="section-tag">What We Offer</p>
-  <h2 class="section-title">Our Services</h2>
-  <div class="services-grid">
-    <div class="service-card">
-      <span class="service-num">01</span>
-      <h3>Digital Magazine</h3>
-      <p>Curated editorial content across culture, lifestyle, business, and beyond. Published monthly with premium production quality.</p>
-    </div>
-    <div class="service-card">
-      <span class="service-num">02</span>
-      <h3>Content Creation</h3>
-      <p>Bespoke content strategy and creation services for brands who want to tell their story with impact and authenticity.</p>
-    </div>
-    <div class="service-card">
-      <span class="service-num">03</span>
-      <h3>Media Consulting</h3>
-      <p>Strategic media advisory for emerging and established brands navigating the evolving digital landscape.</p>
-    </div>
-    <div class="service-card">
-      <span class="service-num">04</span>
-      <h3>Brand Campaigns</h3>
-      <p>Full-service campaign development from concept to execution, aligned with your brand's voice and vision.</p>
-    </div>
-    <div class="service-card">
-      <span class="service-num">05</span>
-      <h3>Blog & Editorial</h3>
-      <p>Thought leadership content, opinion pieces, and industry insights that position you as a voice of authority.</p>
-    </div>
-    <div class="service-card">
-      <span class="service-num">06</span>
-      <h3>Merchandise</h3>
-      <p>Coming Soon — Premium branded merchandise for our community. Limited edition drops inspired by our publications.</p>
-    </div>
-  </div>
-</section>
+    <!-- FEATURED ARTICLES -->
+    <section class="featured-articles">
+        <p class="section-tag">⚡ Latest Content</p>
+        <h2 class="section-title">Featured Stories</h2>
+        <p class="section-desc">Discover our most compelling narratives, curated for the curious mind.</p>
+        <div class="articles-grid">
+            <div class="article-card" onclick="openArticleModal('The Rise of Digital Media in 2025')">
+                <div class="article-image">📰</div>
+                <div class="article-content">
+                    <span class="article-tag">CULTURE</span>
+                    <h3 class="article-title">The Rise of Digital Media in 2025</h3>
+                    <p class="article-excerpt">Explore how independent creators are reshaping the media landscape with authentic storytelling...</p>
+                    <span class="article-meta">May 5, 2025 · 8 min read</span>
+                </div>
+            </div>
 
-<!-- MAGAZINE -->
-<section>
-  <p class="section-tag">Latest Issues</p>
-  <h2 class="section-title">Featured Magazines</h2>
-  <div class="magazines-grid">
-    <div class="mag-card">
-      <p class="mag-label">Issue 01 · 2025</p>
-      <h3>The Rise of Independent Media</h3>
-    </div>
-    <div class="mag-card">
-      <p class="mag-label">Issue 02 · 2025</p>
-      <h3>Voices of the New Generation</h3>
-    </div>
-    <div class="mag-card">
-      <p class="mag-label">Issue 03 · 2025</p>
-      <h3>Culture, Code & Creativity</h3>
-    </div>
-    <div class="mag-card">
-      <p class="mag-label">Issue 04 · 2025</p>
-      <h3>The Future of Storytelling</h3>
-    </div>
-  </div>
-</section>
+            <div class="article-card" onclick="openArticleModal('AI and the Future of Journalism')">
+                <div class="article-image">🤖</div>
+                <div class="article-content">
+                    <span class="article-tag">TECHNOLOGY</span>
+                    <h3 class="article-title">AI and the Future of Journalism</h3>
+                    <p class="article-excerpt">How artificial intelligence is transforming news creation while maintaining editorial integrity...</p>
+                    <span class="article-meta">May 3, 2025 · 10 min read</span>
+                </div>
+            </div>
 
-<!-- BLOG -->
-<section class="blog">
-  <p class="section-tag">Latest Posts</p>
-  <h2 class="section-title">From the Blog</h2>
-  <div class="blog-grid">
-    <div class="blog-main">
-      <p class="blog-tag">Featured</p>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;line-height:1.2;margin-bottom:1rem;">How Digital Media is Reshaping the Way We Consume Stories</h3>
-      <p style="font-size:0.82rem;color:#9ca3af;line-height:2;">The landscape of media has undergone a seismic shift. Audiences today don't just consume content — they participate in it, share it, and demand authenticity above all else. At D19 Media, we believe in content that resonates...</p>
-      <p class="blog-meta">April 2025 · 8 min read</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2rem;">
-      <div class="blog-card">
-        <p class="blog-tag">Culture</p>
-        <h3>The Power of Visual Storytelling in 2025</h3>
-        <p class="blog-meta">March 2025 · 5 min read</p>
-      </div>
-      <div class="blog-card">
-        <p class="blog-tag">Business</p>
-        <h3>Building a Media Brand from Zero to Delta</h3>
-        <p class="blog-meta">March 2025 · 6 min read</p>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2rem;">
-      <div class="blog-card">
-        <p class="blog-tag">Lifestyle</p>
-        <h3>Why Slow Media is the Next Big Trend</h3>
-        <p class="blog-meta">Feb 2025 · 4 min read</p>
-      </div>
-      <div class="blog-card">
-        <p class="blog-tag">Technology</p>
-        <h3>AI and the Future of Editorial Content</h3>
-        <p class="blog-meta">Feb 2025 · 7 min read</p>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="article-card" onclick="openArticleModal('Building Brands in a Digital Age')">
+                <div class="article-image">💼</div>
+                <div class="article-content">
+                    <span class="article-tag">BUSINESS</span>
+                    <h3 class="article-title">Building Brands in a Digital Age</h3>
+                    <p class="article-excerpt">Strategic insights on creating authentic brand narratives that resonate with modern audiences...</p>
+                    <span class="article-meta">May 1, 2025 · 7 min read</span>
+                </div>
+            </div>
 
-<!-- FOOTER -->
-<footer>
-  <div>
-    <p class="footer-brand">D<span>19</span> MEDIA</p>
-    <p class="footer-desc">Delta 19 Media is a premium digital media company dedicated to authentic storytelling, bold ideas, and the future of content.</p>
-  </div>
-  <div>
-    <p class="footer-heading">Navigate</p>
-    <ul class="footer-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Magazine</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">About Us</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </div>
-  <div>
-    <p class="footer-heading">Services</p>
-    <ul class="footer-links">
-      <li><a href="#">Content Creation</a></li>
-      <li><a href="#">Brand Campaigns</a></li>
-      <li><a href="#">Media Consulting</a></li>
-      <li><a href="#">Merchandise</a></li>
-    </ul>
-  </div>
-  <div>
-    <p class="footer-heading">Connect</p>
-    <ul class="footer-links">
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">LinkedIn</a></li>
-      <li><a href="#">Twitter / X</a></li>
-      <li><a href="#">Newsletter</a></li>
-    </ul>
-  </div>
-</footer>
-<div class="footer-bottom">
-  <p>© 2025 D19 Media. All rights reserved.</p>
-  <p>Privacy Policy · Terms of Use</p>
-</div>
+            <div class="article-card" onclick="openArticleModal('The Art of Visual Storytelling')">
+                <div class="article-image">🎨</div>
+                <div class="article-content">
+                    <span class="article-tag">LIFESTYLE</span>
+                    <h3 class="article-title">The Art of Visual Storytelling</h3>
+                    <p class="article-excerpt">Master the craft of engaging audiences through compelling visual narratives and design...</p>
+                    <span class="article-meta">April 28, 2025 · 6 min read</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- STATS SECTION -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Active Readers</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Articles Published</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Magazine Issues</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAGAZINE SECTION -->
+    <section class="magazines" id="magazine">
+        <p class="section-tag">📖 Latest Issues</p>
+        <h2 class="section-title">Featured Magazines</h2>
+        <p class="section-desc">Immerse yourself in our premium monthly publications packed with insights and inspiration.</p>
+        <div class="magazines-grid">
+            <div class="mag-card">
+                <div class="mag-num">01</div>
+                <div class="mag-content">
+                    <p class="mag-label">Issue 01 · May 2025</p>
+                    <h3 class="mag-title">The Rise of Independent Media</h3>
+                    <button class="mag-read-btn" onclick="openMagazineModal('The Rise of Independent Media', 'Issue 01 · May 2025')">Read Now</button>
+                </div>
+            </div>
+
+            <div class="mag-card">
+                <div class="mag-num">02</div>
+                <div class="mag-content">
+                    <p class="mag-label">Issue 02 · April 2025</p>
+                    <h3 class="mag-title">Voices of the New Generation</h3>
+                    <button class="mag-read-btn" onclick="openMagazineModal('Voices of the New Generation', 'Issue 02 · April 2025')">Read Now</button>
+                </div>
+            </div>
+
+            <div class="mag-card">
+                <div class="mag-num">03</div>
+                <div class="mag-content">
+                    <p class="mag-label">Issue 03 · March 2025</p>
+                    <h3 class="mag-title">Culture, Code & Creativity</h3>
+                    <button class="mag-read-btn" onclick="openMagazineModal('Culture, Code & Creativity', 'Issue 03 · March 2025')">Read Now</button>
+                </div>
+            </div>
+
+            <div class="mag-card">
+                <div class="mag-num">04</div>
+                <div class="mag-content">
+                    <p class="mag-label">Issue 04 · February 2025</p>
+                    <h3 class="mag-title">The Future of Storytelling</h3>
+                    <button class="mag-read-btn" onclick="openMagazineModal('The Future of Storytelling', 'Issue 04 · February 2025')">Read Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <p class="section-tag">⚙️ What We Offer</p>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-desc">Comprehensive media solutions tailored for brands that want to make an impact.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-num">01</span>
+                <div class="service-icon">📝</div>
+                <h3 class="service-title">Content Creation</h3>
+                <p class="service-desc">Bespoke content strategy and creation services for brands who want to tell their story with impact and authenticity.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">02</span>
+                <div class="service-icon">📊</div>
+                <h3 class="service-title">Media Consulting</h3>
+                <p class="service-desc">Strategic media advisory for emerging and established brands navigating the evolving digital landscape.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">03</span>
+                <div class="service-icon">🚀</div>
+                <h3 class="service-title">Brand Campaigns</h3>
+                <p class="service-desc">Full-service campaign development from concept to execution, aligned with your brand's voice and vision.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">04</span>
+                <div class="service-icon">💬</div>
+                <h3 class="service-title">Blog & Editorial</h3>
+                <p class="service-desc">Thought leadership content, opinion pieces, and industry insights that position you as a voice of authority.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">05</span>
+                <div class="service-icon">🎬</div>
+                <h3 class="service-title">Video Production</h3>
+                <p class="service-desc">Professional video content from concept development to post-production with cinematic quality standards.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">06</span>
+                <div class="service-icon">🎧</div>
+                <h3 class="service-title">Podcast Production</h3>
+                <p class="service-desc">End-to-end podcast creation, from scripting and recording to editing and distribution across all platforms.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section class="blog" id="blog">
+        <p class="section-tag">📚 Latest Posts</p>
+        <h2 class="section-title">From the Blog</h2>
+        <p class="section-desc">Deep dives into culture, technology, business, and the stories that matter.</p>
+        <div class="blog-grid">
+            <div class="blog-featured">
+                <div class="blog-featured-content">
+                    <div class="blog-featured-image">📰</div>
+                    <span class="article-tag">FEATURED</span>
+                    <h3>How Digital Media is Reshaping Consumer Behavior</h3>
+                    <p>The landscape of media has undergone a seismic shift. Audiences today don't just consume content — they participate in it, share it, and demand authenticity above all else. At D19 Media, we believe in content that resonates on a deeper level...</p>
+                    <p class="blog-meta">May 5, 2025 · 9 min read</p>
+                </div>
+            </div>
+
+            <div class="blog-side">
+                <div class="blog-card" onclick="openArticleModal('The Power of Visual Storytelling')">
+                    <span class="article-tag">CULTURE</span>
+                    <h3>The Power of Visual Storytelling</h3>
+                    <p class="blog-meta">May 2, 2025 · 6 min read</p>
+                </div>
+
+                <div class="blog-card" onclick="openArticleModal('Building a Media Brand from Zero')">
+                    <span class="article-tag">BUSINESS</span>
+                    <h3>Building a Media Brand from Zero</h3>
+                    <p class="blog-meta">April 30, 2025 · 7 min read</p>
+                </div>
+
+                <div class="blog-card" onclick="openArticleModal('Why Slow Media is Trending')">
+                    <span class="article-tag">LIFESTYLE</span>
+                    <h3>Why Slow Media is Trending</h3>
+                    <p class="blog-meta">April 28, 2025 · 5 min read</p>
+                </div>
+
+                <div class="blog-card" onclick="openArticleModal('The Ethics of AI in Content')">
+                    <span class="article-tag">TECHNOLOGY</span>
+                    <h3>The Ethics of AI in Content</h3>
+                    <p class="blog-meta">April 25, 2025 · 8 min read</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT/NEWSLETTER SECTION -->
+    <section id="contact" style="background: linear-gradient(135deg, rgba(212,168,83,0.1), rgba(147,51,234,0.1)); border-top: 1px solid rgba(147,51,234,0.2); border-bottom: 1px solid rgba(147,51,234,0.2);">
+        <p class="section-tag">💌 Stay Connected</p>
+        <h2 class="section-title">Join Our Community</h2>
+        <p class="section-desc">Subscribe to get the latest stories, insights, and exclusive content delivered to your inbox.</p>
+        <div style="max-width: 500px; margin: 0 auto;">
+            <form onsubmit="handleNewsletterSubmit(event)">
+                <div class="form-group">
+                    <input type="email" placeholder="Enter your email address" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Subscribe Now</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <p class="footer-brand">D<span>19</span> MEDIA</p>
+                <p class="footer-desc">Delta 19 Media is a premium digital media company dedicated to authentic storytelling, bold ideas, and the future of content. We believe in the power of narratives to move, inspire, and transform.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <p class="footer-heading">Navigate</p>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#magazine">Magazine</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="footer-heading">Services</p>
+                <ul class="footer-links">
+                    <li><a href="#">Content Creation</a></li>
+                    <li><a href="#">Brand Campaigns</a></li>
+                    <li><a href="#">Media Consulting</a></li>
+                    <li><a href="#">Video Production</a></li>
+                    <li><a href="#">Podcast Production</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="footer-heading">Legal</p>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-divider">
+            <p class="footer-bottom-text">© 2025 D19 Media. All rights reserved. | Privacy Policy · Terms of Use</p>
+            <p class="footer-bottom-text">Made with ✦ for storytellers</p>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <!-- Subscribe Modal -->
+    <div id="subscribeModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('subscribeModal')">×</button>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1.5rem; color: #fff;">Join D19 Media</h3>
+            <form onsubmit="handleSubscribe(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Interests</label>
+                    <input type="text" placeholder="e.g., Technology, Culture, Business">
+                </div>
+                <button type="submit" class="modal-btn">Subscribe Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="modal-close" onclick="closeModal('searchModal')">×</button>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1.5rem; color: #fff;">Search D19 Media</h3>
+            <div class="form-group">
+                <input type="text" placeholder="Search articles, magazines, topics..." id="searchInput" oninput="performSearch()">
+            </div>
+            <div id="searchResults" style="margin-top: 2rem;">
+                <p style="color: var(--muted); text-align: center;">Type to search...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Modal -->
+    <div id="articleModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <button class="modal-close" onclick="closeModal('articleModal')">×</button>
+            <div id="articleContent" style="position: relative; z-index: 1;">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Magazine Modal -->
+    <div id="magazineModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <button class="modal-close" onclick="closeModal('magazineModal')">×</button>
+            <div id="magazineContent" style="position: relative; z-index: 1;">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function openSubscribeModal() {
+            openModal('subscribeModal');
+        }
+
+        function openSearchModal() {
+            openModal('searchModal');
+            document.getElementById('searchInput').focus();
+        }
+
+        function openArticleModal(title) {
+            const articleContent = document.getElementById('articleContent');
+            articleContent.innerHTML = `
+                <div class="blog-featured-image">📰</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem; color: #fff;">${title}</h3>
+                <p style="color: var(--muted); margin-bottom: 2rem; font-size: 0.9rem;">May 2025 · 7 min read</p>
+                <p style="color: var(--text); line-height: 1.8; margin-bottom: 1.5rem;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <p style="color: var(--text); line-height: 1.8;">
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            `;
+            openModal('articleModal');
+        }
+
+        function openMagazineModal(title, issue) {
+            const magazineContent = document.getElementById('magazineContent');
+            magazineContent.innerHTML = `
+                <div class="blog-featured-image" style="font-size: 5rem;">📖</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 0.5rem; color: var(--gold);">${issue}</h3>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 2rem; color: #fff;">${title}</h2>
+                <p style="color: var(--text); line-height: 1.8; margin-bottom: 2rem;">
+                    This premium magazine issue features exclusive insights, in-depth articles, and curated stories from industry leaders and emerging voices. Dive into compelling narratives that explore the intersection of culture, technology, and innovation.
+                </p>
+                <button class="btn btn-primary" style="width: 100%;">Download PDF</button>
+            `;
+            openModal('magazineModal');
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const resultsDiv = document.getElementById('searchResults');
+            
+            const articles = [
+                'The Rise of Digital Media in 2025',
+                'AI and the Future of Journalism',
+                'Building Brands in a Digital Age',
+                'The Art of Visual Storytelling'
+            ];
+
+            if (query.length === 0) {
+                resultsDiv.innerHTML = '<p style="color: var(--muted); text-align: center;">Type to search...</p>';
+                return;
+            }
+
+            const filtered = articles.filter(a => a.toLowerCase().includes(query));
+            
+            if (filtered.length === 0) {
+                resultsDiv.innerHTML = '<p style="color: var(--muted); text-align: center;">No results found.</p>';
+            } else {
+                resultsDiv.innerHTML = filtered.map(article => `
+                    <div class="blog-card" onclick="openArticleModal('${article}'); closeModal('searchModal')" style="cursor: pointer;">
+                        <h3>${article}</h3>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function handleSubscribe(event) {
+            event.preventDefault();
+            alert('Thank you for subscribing to D19 Media! Check your email for confirmation.');
+            closeModal('subscribeModal');
+            event.target.reset();
+        }
+
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            alert('Thanks for subscribing! Welcome to the D19 Media community.');
+            event.target.reset();
+        }
+
+        function toggleMobileMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
