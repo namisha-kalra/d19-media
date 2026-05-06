@@ -3,258 +3,265 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D19 Media – Premium</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Montserrat&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-
+<title>D19 Media – Dark Luxury</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-body { margin:0; background:#0a0612; color:white; font-family:Montserrat; }
+  :root {
+    --deep: #0a0612;
+    --purple: #6b21a8;
+    --violet: #9333ea;
+    --light-purple: #c084fc;
+    --gold: #d4a853;
+    --text: #e8e0f0;
+    --muted: #9ca3af;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--deep); color: var(--text); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+  
+  /* NAV */
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,6,18,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(147,51,234,0.2); }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; letter-spacing: 0.3em; color: var(--light-purple); }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+  nav ul a:hover { color: var(--light-purple); }
+  .nav-cta { background: var(--violet); color: #fff; padding: 0.6rem 1.6rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.3s; }
+  .nav-cta:hover { background: var(--gold); }
 
-/* NAV */
-nav { position:fixed; width:100%; top:0; padding:20px; display:flex; justify-content:space-between; background:#0a0612; z-index:1000;}
-nav a { color:#aaa; margin:10px; text-decoration:none; }
+  /* HERO */
+  .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 70% 40%, rgba(107,33,168,0.4) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 70%, rgba(147,51,234,0.2) 0%, transparent 60%); }
+  .hero-content { text-align: center; position: relative; z-index: 2; }
+  .hero-tag { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 6rem; font-weight: 300; line-height: 1; letter-spacing: -0.02em; color: #fff; margin-bottom: 1rem; }
+  .hero-title em { font-style: italic; color: var(--light-purple); }
+  .hero-sub { font-size: 0.85rem; letter-spacing: 0.1em; color: var(--muted); max-width: 400px; margin: 0 auto 3rem; line-height: 2; }
+  .hero-btns { display: flex; gap: 1.5rem; justify-content: center; }
+  .btn-primary { background: var(--violet); color: #fff; padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.3s; }
+  .btn-outline { background: transparent; color: var(--light-purple); padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--violet); cursor: pointer; transition: all 0.3s; }
+  .btn-outline:hover { background: var(--violet); color: #fff; }
 
-/* HERO */
-.hero { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
-.hero h1 { font-size:60px; }
+  /* SECTION TEMPLATE */
+  section { padding: 6rem 4rem; }
+  .section-tag { font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; line-height: 1.1; }
 
-/* SECTION */
-section { padding:80px 40px; }
+  /* SERVICES */
+  .services { background: rgba(107,33,168,0.08); border-top: 1px solid rgba(147,51,234,0.2); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; }
+  .service-card { background: rgba(255,255,255,0.03); padding: 3rem 2rem; border: 1px solid rgba(147,51,234,0.15); position: relative; overflow: hidden; transition: all 0.4s; }
+  .service-card:hover { background: rgba(147,51,234,0.1); border-color: var(--violet); }
+  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(147,51,234,0.3); position: absolute; top: 1rem; right: 2rem; }
+  .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1rem; color: var(--light-purple); }
+  .service-card p { font-size: 0.8rem; line-height: 2; color: var(--muted); }
 
-/* GRID */
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+  /* MAGAZINES */
+  .magazines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; }
+  .mag-card { aspect-ratio: 3/4; background: linear-gradient(135deg, rgba(107,33,168,0.4), rgba(10,6,18,0.9)); border: 1px solid rgba(147,51,234,0.2); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: all 0.4s; }
+  .mag-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+  .mag-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .mag-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; }
 
-.card { background:#1c1440; padding:20px; border-radius:10px; }
+  /* BLOG */
+  .blog { background: rgba(147,51,234,0.05); }
+  .blog-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; margin-top: 4rem; }
+  .blog-main { border: 1px solid rgba(147,51,234,0.2); padding: 2.5rem; }
+  .blog-card { border: 1px solid rgba(147,51,234,0.15); padding: 1.5rem; transition: all 0.3s; cursor: pointer; }
+  .blog-card:hover { border-color: var(--violet); }
+  .blog-tag { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--violet); margin-bottom: 0.75rem; }
+  .blog-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; line-height: 1.3; margin-bottom: 0.75rem; }
+  .blog-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.8; }
+  .blog-meta { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 1.5rem; }
 
-/* BUTTON */
-.btn { background:#9333ea; padding:10px 20px; border:none; color:white; }
+  /* FOOTER */
+  footer { background: rgba(0,0,0,0.5); border-top: 1px solid rgba(147,51,234,0.2); padding: 4rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--light-purple); margin-bottom: 1rem; }
+  .footer-brand span { color: var(--gold); }
+  .footer-desc { font-size: 0.78rem; color: var(--muted); line-height: 2; }
+  .footer-heading { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.75rem; }
+  .footer-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--light-purple); }
+  .footer-bottom { padding: 2rem 4rem; border-top: 1px solid rgba(147,51,234,0.1); display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
 
-/* FOOTER */
-footer { background:#000; padding:40px; text-align:center; }
+  /* BADGE */
+  .template-badge { position: fixed; bottom: 2rem; right: 2rem; background: var(--gold); color: var(--deep); padding: 0.5rem 1rem; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; z-index: 999; }
 </style>
-
 </head>
-
 <body>
 
-<!-- LOADER -->
-<div id="loader" style="position:fixed;inset:0;background:#0a0612;display:flex;justify-content:center;align-items:center;z-index:9999;">
-<h2 style="color:#c084fc;">D19 MEDIA</h2>
-</div>
+<div class="template-badge">Template 01 – Dark Luxury</div>
 
-  <!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D19 Media</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Montserrat&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<!-- LOADER -->
-
-<div id="loader">D19 MEDIA</div>
-
-<!-- NAV -->
-
+<!-- NAVBAR -->
 <nav>
-  <div class="logo">D19 MEDIA</div>
+  <div class="logo">D<span>19</span> MEDIA</div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Magazine</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Subscribe</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Delta · 19 · Media</p>
+    <h1 class="hero-title">Where <em>Stories</em><br>Come Alive</h1>
+    <p class="hero-sub">Premium digital media for the modern audience. Magazines, insights, and creative content crafted with purpose.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Explore Now</button>
+      <button class="btn-outline">Our Magazine</button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <p class="section-tag">What We Offer</p>
+  <h2 class="section-title">Our Services</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <h3>Digital Magazine</h3>
+      <p>Curated editorial content across culture, lifestyle, business, and beyond. Published monthly with premium production quality.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <h3>Content Creation</h3>
+      <p>Bespoke content strategy and creation services for brands who want to tell their story with impact and authenticity.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <h3>Media Consulting</h3>
+      <p>Strategic media advisory for emerging and established brands navigating the evolving digital landscape.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <h3>Brand Campaigns</h3>
+      <p>Full-service campaign development from concept to execution, aligned with your brand's voice and vision.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">05</span>
+      <h3>Blog & Editorial</h3>
+      <p>Thought leadership content, opinion pieces, and industry insights that position you as a voice of authority.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">06</span>
+      <h3>Merchandise</h3>
+      <p>Coming Soon — Premium branded merchandise for our community. Limited edition drops inspired by our publications.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAGAZINE -->
+<section>
+  <p class="section-tag">Latest Issues</p>
+  <h2 class="section-title">Featured Magazines</h2>
+  <div class="magazines-grid">
+    <div class="mag-card">
+      <p class="mag-label">Issue 01 · 2025</p>
+      <h3>The Rise of Independent Media</h3>
+    </div>
+    <div class="mag-card">
+      <p class="mag-label">Issue 02 · 2025</p>
+      <h3>Voices of the New Generation</h3>
+    </div>
+    <div class="mag-card">
+      <p class="mag-label">Issue 03 · 2025</p>
+      <h3>Culture, Code & Creativity</h3>
+    </div>
+    <div class="mag-card">
+      <p class="mag-label">Issue 04 · 2025</p>
+      <h3>The Future of Storytelling</h3>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog">
+  <p class="section-tag">Latest Posts</p>
+  <h2 class="section-title">From the Blog</h2>
+  <div class="blog-grid">
+    <div class="blog-main">
+      <p class="blog-tag">Featured</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;line-height:1.2;margin-bottom:1rem;">How Digital Media is Reshaping the Way We Consume Stories</h3>
+      <p style="font-size:0.82rem;color:#9ca3af;line-height:2;">The landscape of media has undergone a seismic shift. Audiences today don't just consume content — they participate in it, share it, and demand authenticity above all else. At D19 Media, we believe in content that resonates...</p>
+      <p class="blog-meta">April 2025 · 8 min read</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2rem;">
+      <div class="blog-card">
+        <p class="blog-tag">Culture</p>
+        <h3>The Power of Visual Storytelling in 2025</h3>
+        <p class="blog-meta">March 2025 · 5 min read</p>
+      </div>
+      <div class="blog-card">
+        <p class="blog-tag">Business</p>
+        <h3>Building a Media Brand from Zero to Delta</h3>
+        <p class="blog-meta">March 2025 · 6 min read</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2rem;">
+      <div class="blog-card">
+        <p class="blog-tag">Lifestyle</p>
+        <h3>Why Slow Media is the Next Big Trend</h3>
+        <p class="blog-meta">Feb 2025 · 4 min read</p>
+      </div>
+      <div class="blog-card">
+        <p class="blog-tag">Technology</p>
+        <h3>AI and the Future of Editorial Content</h3>
+        <p class="blog-meta">Feb 2025 · 7 min read</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
   <div>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#magazine">Magazine</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
+    <p class="footer-brand">D<span>19</span> MEDIA</p>
+    <p class="footer-desc">Delta 19 Media is a premium digital media company dedicated to authentic storytelling, bold ideas, and the future of content.</p>
   </div>
-</nav>
-
-<!-- HERO -->
-
-<section class="hero fade-up" id="home">
-  <h1>Where Stories Come Alive</h1>
-  <p>Premium Digital Media Platform</p>
-  <button class="btn-primary">Explore</button>
-</section>
-
-<!-- ABOUT -->
-
-<section id="about" class="fade-up">
-  <h2>About Us</h2>
-  <p>D19 Media is a premium digital platform focused on storytelling, culture, and modern content.</p>
-</section>
-
-<!-- SERVICES -->
-
-<section class="fade-up">
-  <h2>Services</h2>
-  <div class="grid">
-
-```
-<div class="card hover-lift">
-  <img src="https://img.icons8.com/ios-filled/50/ffffff/content.png">
-  <h3>Content Creation</h3>
-</div>
-
-<div class="card hover-lift">
-  <img src="https://img.icons8.com/ios-filled/50/ffffff/advertising.png">
-  <h3>Advertising</h3>
-</div>
-
-<div class="card hover-lift">
-  <img src="https://img.icons8.com/ios-filled/50/ffffff/megaphone.png">
-  <h3>PR</h3>
-</div>
-```
-
+  <div>
+    <p class="footer-heading">Navigate</p>
+    <ul class="footer-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Magazine</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
   </div>
-</section>
-
-<!-- MAGAZINE -->
-
-<section id="magazine" class="fade-up">
-  <h2>Magazines</h2>
-  <div class="grid">
-
-```
-<div class="card hover-lift">
-  <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
-  <h3>Issue 01</h3>
-</div>
-
-<div class="card hover-lift">
-  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-  <h3>Issue 02</h3>
-</div>
-
-<div class="card hover-lift">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-  <h3>Issue 03</h3>
-</div>
-```
-
+  <div>
+    <p class="footer-heading">Services</p>
+    <ul class="footer-links">
+      <li><a href="#">Content Creation</a></li>
+      <li><a href="#">Brand Campaigns</a></li>
+      <li><a href="#">Media Consulting</a></li>
+      <li><a href="#">Merchandise</a></li>
+    </ul>
   </div>
-</section>
-
-<!-- BLOG -->
-
-<section id="blog" class="fade-up">
-  <h2>Blog</h2>
-  <div class="grid">
-
-```
-<div class="card hover-lift">
-  <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d">
-  <h3>AI in Journalism</h3>
-</div>
-
-<div class="card hover-lift">
-  <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f">
-  <h3>Storytelling Trends</h3>
-</div>
-
-<div class="card hover-lift">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-  <h3>Future of Media</h3>
-</div>
-```
-
+  <div>
+    <p class="footer-heading">Connect</p>
+    <ul class="footer-links">
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">Twitter / X</a></li>
+      <li><a href="#">Newsletter</a></li>
+    </ul>
   </div>
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact" class="fade-up">
-  <h2>Contact</h2>
-  <input placeholder="Enter email">
-  <button class="btn-primary">Send</button>
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-  <p>© 2026 D19 Media</p>
 </footer>
-
-<script src="script.js"></script>
-
-</body>
-</html>
-
-
-<!-- NAV -->
-<nav>
-<div>D19 MEDIA</div>
-<div>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#magazine">Magazine</a>
-<a href="#blog">Blog</a>
-<a href="#contact">Contact</a>
+<div class="footer-bottom">
+  <p>© 2025 D19 Media. All rights reserved.</p>
+  <p>Privacy Policy · Terms of Use</p>
 </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero fade-up" id="home">
-<h1>Where Stories Come Alive</h1>
-<p>Premium Digital Media Platform</p>
-<button class="btn">Explore</button>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="fade-up">
-<h2>About Us</h2>
-<p>D19 Media is a premium digital platform focused on storytelling, culture, and modern content.</p>
-</section>
-
-<!-- SERVICES -->
-<section class="fade-up">
-<h2>Services</h2>
-<div class="grid">
-<div class="card hover-lift">Content Creation</div>
-<div class="card hover-lift">Advertising</div>
-<div class="card hover-lift">PR</div>
-</div>
-</section>
-
-<!-- MAGAZINE -->
-<section id="magazine" class="fade-up">
-<h2>Magazines</h2>
-<div class="grid">
-<div class="card hover-lift">Issue 01</div>
-<div class="card hover-lift">Issue 02</div>
-<div class="card hover-lift">Issue 03</div>
-</div>
-</section>
-
-<!-- BLOG -->
-<section id="blog" class="fade-up">
-<h2>Blog</h2>
-<div class="grid">
-<div class="card hover-lift">Blog Post 1</div>
-<div class="card hover-lift">Blog Post 2</div>
-<div class="card hover-lift">Blog Post 3</div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="fade-up">
-<h2>Contact</h2>
-<input placeholder="Email">
-<button class="btn">Send</button>
-</section>
-
-<!-- FOOTER -->
-<footer>
-<p>© 2026 D19 Media</p>
-</footer>
-
-<script src="script.js"></script>
 
 </body>
 </html>
