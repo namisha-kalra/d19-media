@@ -71,3 +71,19 @@ nav.scrolled {
 .mag-card:hover::after {
   opacity: 1;
 }
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background: 
+    linear-gradient(rgba(10,6,18,0.7), rgba(10,6,18,0.9)),
+    url('https://images.unsplash.com/photo-1492724441997-5dc865305da7');
+
+  background-size: cover;
+  background-position: center;
+}
